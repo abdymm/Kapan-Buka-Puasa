@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_text_size">20sp</dimen>
+
+    <dimen name="layout_margin_end">5dp</dimen>
+
+    <dimen name="box_cdv_margin">100dp</dimen>
+
+    <dimen name="cdv_margin_right_left">10dp</dimen>
+    <dimen name="cdv_time_text_size">50sp</dimen>
+    <dimen name="cdv_suffix_text_size">20sp</dimen>
+
+    <dimen name="margin_between_component_text">5dp</dimen>
+
+</resources>

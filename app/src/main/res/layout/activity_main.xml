@@ -1,0 +1,134 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.abdymalikmulky.bukapuasaapp.app.MainActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:elevation="0dp"
+        android:background="@android:color/transparent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/app_title"
+                android:textSize="@dimen/title_text_size"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorText"/>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_date_masehi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_date_masehi"
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/appBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/layout_margin_end"/>
+
+    <TextView
+        android:id="@+id/tv_date_hijr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_date_hijr"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/tv_date_masehi"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/layout_margin_end"/>
+
+
+    <RelativeLayout
+        android:id="@+id/box_cdv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_date_hijr"
+        android:layout_margin="@dimen/box_cdv_margin">
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/cv_countdownViewHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            app:suffixGravity="center"
+            app:suffixHour="Jam"
+            app:suffixHourLeftMargin="@dimen/cdv_margin_right_left"
+            app:suffixHourRightMargin="@dimen/cdv_margin_right_left"
+            app:suffixMinute="Menit"
+            app:suffixMinuteLeftMargin="@dimen/cdv_margin_right_left"
+            app:suffixMinuteRightMargin="@dimen/cdv_margin_right_left"
+            app:suffixTextColor="#ecf0f1"
+            app:suffixTextSize="@dimen/cdv_suffix_text_size"
+            app:timeTextColor="#ecf0f1"
+            app:timeTextSize="@dimen/cdv_time_text_size"
+            app:isTimeTextBold="true"
+            />
+
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/cv_countdownViewSecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            app:isShowDay="false"
+            app:isShowHour="false"
+            app:isShowMinute="false"
+            app:isShowMillisecond="false"
+            app:isShowSecond="true"
+            app:suffixGravity="bottom"
+            app:suffixSecond="Detik"
+            app:suffixSecondLeftMargin="10dp"
+            app:suffixSecondRightMargin="10dp"
+            app:suffixTextColor="#ecf0f1"
+            app:suffixTextSize="20sp"
+            app:timeTextColor="#ecf0f1"
+            app:timeTextSize="@dimen/cdv_time_text_size"
+            app:isTimeTextBold="true"
+            android:layout_below="@+id/cv_countdownViewHour"
+            />
+    </RelativeLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/box_cdv"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_maghrib_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/label_mahrib_maghrib_buka"
+            android:textColor="@color/colorText"/>
+        <TextView
+            android:id="@+id/tv_maghrib_time"
+            android:layout_marginTop="@dimen/margin_between_component_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dummy_maghrib_time"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/cdv_time_text_size"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

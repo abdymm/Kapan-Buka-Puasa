@@ -1,0 +1,17 @@
+User story : 
+- user dapat memberikan current lokasi
+- user dapat melihat countdown timer (setelah imsyak sebelum buka) ($ > imsyak && $ < buka)
+- user dapat melihat message after buka puasa ($ > buka && $ < imsyak)
+
+
+Technical flow : 
+- Get current location : lat, long
+- konversi ke address -> city
+- store to local as current location
+
+initial
+- Fetch data city 
+- store to local
+- Fetch data jadwal sholat by city and date (now)
+- store to local 
+- countdown (lib) by checking in local by day

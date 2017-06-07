@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BukaPuasaApp</string>
+    <string name="app_title">BukaPuasa</string>
+
+    <string name="label_mahrib_maghrib_buka">Maghrib \n(Buka Puasa)</string>
+
+    <string name="dummy_date_hijr">10 Ramadhan</string>
+    <string name="dummy_date_masehi">5 Juni 2017</string>
+    <string name="dummy_maghrib_time">17:42</string>
+
+
+</resources>
