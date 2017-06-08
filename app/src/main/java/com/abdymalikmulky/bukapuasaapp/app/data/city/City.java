@@ -1,14 +1,24 @@
 
 package com.abdymalikmulky.bukapuasaapp.app.data.city;
 
+import com.abdymalikmulky.bukapuasaapp.app.data.DatabaseConfig;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
-public class City {
+@Table(database = DatabaseConfig.class)
+public class City extends BaseModel{
 
+    @Column
+    @PrimaryKey(autoincrement = false)
     @SerializedName("id")
     @Expose
     private String id;
+
+    @Column
     @SerializedName("name")
     @Expose
     private String name;

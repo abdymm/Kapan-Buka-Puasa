@@ -1,4 +1,4 @@
-package com.abdymalikmulky.bukapuasaapp.app;
+package com.abdymalikmulky.bukapuasaapp.app.ui.main;
 
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalDataSource;

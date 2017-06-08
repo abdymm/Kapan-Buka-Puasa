@@ -11,5 +11,5 @@ public class DatabaseConfig {
 
     public static final String NAME = "jadwalsholat";
 
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 }

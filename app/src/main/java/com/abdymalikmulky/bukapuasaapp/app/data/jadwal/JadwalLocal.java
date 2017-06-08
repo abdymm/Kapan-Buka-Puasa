@@ -1,8 +1,5 @@
-package com.abdymalikmulky.bukapuasaapp.app.data.jadwal.local;
+package com.abdymalikmulky.bukapuasaapp.app.data.jadwal;
 
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalDataSource;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal_Table;
 import com.abdymalikmulky.bukapuasaapp.util.DateTimeUtil;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Where;

@@ -11,5 +11,7 @@ public class EndpointUtil {
 
     public static final String URL_JADWAL = "jadwal/";
 
+    public static final String URL_CITY = "cities";
+
 
 }

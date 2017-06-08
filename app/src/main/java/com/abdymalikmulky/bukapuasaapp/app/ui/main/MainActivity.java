@@ -1,4 +1,4 @@
-package com.abdymalikmulky.bukapuasaapp.app;
+package com.abdymalikmulky.bukapuasaapp.app.ui.main;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.abdymalikmulky.bukapuasaapp.R;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.local.JadwalLocal;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.remote.JadwalRemote;
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalLocal;
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRemote;
 import com.abdymalikmulky.bukapuasaapp.util.DateTimeUtil;
 
 import java.util.List;
@@ -166,13 +166,13 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         mainPresenter = presenter;
     }
 
-    //TODO: pindahin ini ke splash screen
+    //TODO: pindahin ini ke background_splash screen
     @Override
     public void showJadwal(List<Jadwal> jadwalList) {
         Timber.d("Data-Jadwal %s", jadwalList.toString());
         int lastIndex = jadwalList.size()-1;
 
-        //TODO: ini nanti di splash aja, trus tambahin check if exist jadwalnya
+        //TODO: ini nanti di background_splash aja, trus tambahin check if exist jadwalnya
         mainPresenter.getNowJadwal(CITY_DUMMY);
     }
 

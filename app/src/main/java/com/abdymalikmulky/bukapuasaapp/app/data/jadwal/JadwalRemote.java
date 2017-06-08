@@ -1,9 +1,5 @@
-package com.abdymalikmulky.bukapuasaapp.app.data.jadwal.remote;
+package com.abdymalikmulky.bukapuasaapp.app.data.jadwal;
 
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalApi;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalDataSource;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalSholatResponse;
 import com.abdymalikmulky.bukapuasaapp.helper.ApiHelper;
 
 import java.util.List;

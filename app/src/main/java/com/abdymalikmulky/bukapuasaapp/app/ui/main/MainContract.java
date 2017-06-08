@@ -1,5 +1,7 @@
-package com.abdymalikmulky.bukapuasaapp.app;
+package com.abdymalikmulky.bukapuasaapp.app.ui.main;
 
+import com.abdymalikmulky.bukapuasaapp.app.BasePresenter;
+import com.abdymalikmulky.bukapuasaapp.app.BaseView;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 
 import java.util.List;

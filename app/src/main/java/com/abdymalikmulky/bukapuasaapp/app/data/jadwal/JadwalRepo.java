@@ -1,8 +1,5 @@
 package com.abdymalikmulky.bukapuasaapp.app.data.jadwal;
 
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.local.JadwalLocal;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.remote.JadwalRemote;
-
 import java.util.List;
 
 /**
