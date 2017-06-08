@@ -54,4 +54,6 @@ ext {
     jobqueueVersion = "2.0.1"
 
     eventBusVersion = "3.0.0"
+
+    jodaVersion = "2.9.9"
 }

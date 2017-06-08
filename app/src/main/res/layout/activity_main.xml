@@ -25,19 +25,11 @@
                 android:text="@string/app_title"
                 android:textSize="@dimen/title_text_size"
                 android:gravity="center_vertical"
-                android:textColor="@color/colorText"/>
+                android:textColor="@color/colorText"
+                android:visibility="gone"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_date_masehi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dummy_date_masehi"
-        android:textColor="@color/colorText"
-        android:layout_below="@+id/appBar"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/layout_margin_end"/>
 
     <TextView
         android:id="@+id/tv_date_hijr"
@@ -46,9 +38,23 @@
         android:text="@string/dummy_date_hijr"
         android:textStyle="bold"
         android:textColor="@color/colorText"
-        android:layout_below="@+id/tv_date_masehi"
+        android:textSize="@dimen/text_size_date_hijr"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/layout_margin_end"/>
+
+    <TextView
+        android:id="@+id/tv_date_masehi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_date_masehi"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/text_size_date_masehi"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_date_hijr"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/layout_margin_end"/>
+
 
 
     <RelativeLayout
@@ -56,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_date_hijr"
-        android:layout_margin="@dimen/box_cdv_margin">
+        android:layout_marginTop="@dimen/box_cdv_margin"
+        android:layout_marginBottom="@dimen/box_cdv_margin">
         <cn.iwgang.countdownview.CountdownView
             android:id="@+id/cv_countdownViewHour"
             android:layout_width="match_parent"
@@ -95,7 +102,7 @@
             app:suffixSecondLeftMargin="10dp"
             app:suffixSecondRightMargin="10dp"
             app:suffixTextColor="#ecf0f1"
-            app:suffixTextSize="20sp"
+            app:suffixTextSize="@dimen/cdv_suffix_text_size"
             app:timeTextColor="#ecf0f1"
             app:timeTextSize="@dimen/cdv_time_text_size"
             app:isTimeTextBold="true"

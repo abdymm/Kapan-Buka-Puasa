@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         initRepoPresenter();
 
 
+
     }
 
     private void setCountdown(long timeBukaPuasa){
@@ -102,9 +103,10 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         setFont();
     }
     private void setFont(){
-        Typeface tf =Typeface.createFromAsset(getAssets(),"font/bubbler_one.ttf");
+        Typeface tf =Typeface.createFromAsset(getAssets(),"font/helveticanueu.ttf");
+        Typeface tfBold =Typeface.createFromAsset(getAssets(),"font/helveticanueu_b.ttf");
 
-        tvDateHijr.setTypeface(tf);
+        tvDateHijr.setTypeface(tfBold);
         tvDateMasehi.setTypeface(tf);
         tvLabelMaghrib.setTypeface(tf);
         tvTimeMaghrib.setTypeface(tf);
@@ -185,8 +187,9 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         long timeBukaPuasa = dateTimeUtil.getTimeDiff(dateMaghrib);
         setCountdown(timeBukaPuasa);
 
-        tvDateMasehi.setText(date);
         tvTimeMaghrib.setText(DateTimeUtil.removeSecondInStringTime(maghrib));
+        tvDateMasehi.setText(DateTimeUtil.getTodayIndonesia());
+        tvDateHijr.setText(DateTimeUtil.getTodayHijr());
     }
 
     @Override

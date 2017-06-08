@@ -40,6 +40,27 @@ public class CityRepo implements CityDataSource {
                     callback.onFailed(msg);
                 }
             });
+        }else {
+            cityLocal.load(new LoadCityCallback() {
+                @Override
+                public void onLoaded(List<City> cities) {
+                    if(storeCity(cities)){
+                        callback.onLoaded(cities);
+                    }else{
+                        callback.onFailed("Something Wrong");
+                    }
+                }
+
+                @Override
+                public void onNoData() {
+                    callback.onNoData();
+                }
+
+                @Override
+                public void onFailed(String msg) {
+                    callback.onFailed(msg);
+                }
+            });
         }
     }
 

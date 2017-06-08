@@ -153,7 +153,7 @@ class BaseCountdown {
      * initialize Paint
      */
     protected void initPaint() {
-        Typeface tf =Typeface.createFromAsset(mContext.getAssets(),"font/bubbler_one.ttf");
+        Typeface tf =Typeface.createFromAsset(mContext.getAssets(),"font/helveticanueu.ttf");
 
         // time text
         mTimeTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

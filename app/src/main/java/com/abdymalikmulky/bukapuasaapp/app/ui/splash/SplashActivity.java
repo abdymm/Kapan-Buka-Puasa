@@ -30,6 +30,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         cityRepo = new CityRepo(new CityLocal(), new CityRemote());
 
         splashPresenter = new SplashPresenter(cityRepo, jadwalRepo, this);
+
     }
 
     @Override

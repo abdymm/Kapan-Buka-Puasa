@@ -44,6 +44,10 @@ dependencies {
     compile "com.github.Raizlabs.DBFlow:dbflow-core:$rootProject.dbflowVersion"
     compile "com.github.Raizlabs.DBFlow:dbflow:$rootProject.dbflowVersion"
 
+    //time
+    compile "joda-time:joda-time:$rootProject.jodaVersion"
+
+
     //countdownview
     compile project(':countdownview')
 

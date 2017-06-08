@@ -4,12 +4,14 @@
 
     <dimen name="layout_margin_end">5dp</dimen>
 
-    <dimen name="box_cdv_margin">100dp</dimen>
+    <dimen name="box_cdv_margin">85dp</dimen>
 
     <dimen name="cdv_margin_right_left">10dp</dimen>
-    <dimen name="cdv_time_text_size">50sp</dimen>
-    <dimen name="cdv_suffix_text_size">20sp</dimen>
+    <dimen name="cdv_time_text_size">54sp</dimen>
+    <dimen name="cdv_suffix_text_size">14sp</dimen>
 
     <dimen name="margin_between_component_text">5dp</dimen>
+    <dimen name="text_size_date_hijr">18sp</dimen>
+    <dimen name="text_size_date_masehi">16sp</dimen>
 
 </resources>
