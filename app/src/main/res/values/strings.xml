@@ -7,6 +7,9 @@
     <string name="dummy_date_hijr">10 Ramadhan</string>
     <string name="dummy_date_masehi">5 Juni 2017</string>
     <string name="dummy_maghrib_time">17:42</string>
+    <string name="allow_location_permission">Allow your location permission</string>
+    <string name="setting_permission">Open Setting to Allow Location Permission</string>
+    <string name="label_setting">Setting</string>
 
 
 </resources>

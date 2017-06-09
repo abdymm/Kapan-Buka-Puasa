@@ -8,7 +8,11 @@ public interface SplashContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showMain();
+        void showCityLoaded();
+
+        void showLocationSetupDone();
+
+        void showMain(int cityId);
 
         void showError(String msg);
 
@@ -18,9 +22,9 @@ public interface SplashContract {
 
         void fetchCity();
 
-        void fetchJadwal(int cityId);
+        void fetchJadwal();
 
-        void setupLocation();
+        void setupLocation(String setupLocation);
 
     }
 }

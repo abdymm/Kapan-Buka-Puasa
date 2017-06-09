@@ -27,4 +27,5 @@ public interface CityDataSource {
     //TODO: Get city by locationmanager
     void get(GetCityCallback callback);
 
+    void setCurrentCityLocation(String cityName);
 }

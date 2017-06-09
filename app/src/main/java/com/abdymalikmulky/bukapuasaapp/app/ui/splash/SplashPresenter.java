@@ -25,7 +25,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         cityRepo.load(new CityDataSource.LoadCityCallback() {
             @Override
             public void onLoaded(List<City> cities) {
-                splashView.showMain();
+                splashView.showCityLoaded();
             }
 
             @Override
@@ -52,12 +52,13 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
-    public void fetchJadwal(int cityId) {
-
+    public void fetchJadwal() {
+        
     }
 
     @Override
-    public void setupLocation() {
-
+    public void setupLocation(String cityName) {
+        cityRepo.setCurrentCityLocation(cityName);
+        splashView.showLocationSetupDone();
     }
 }

@@ -52,4 +52,9 @@ public class CityRemote implements CityDataSource {
 
     }
 
+    @Override
+    public void setCurrentCityLocation(String cityName) {
+
+    }
+
 }

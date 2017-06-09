@@ -11,6 +11,12 @@ import java.util.List;
 
 public class CityLocal implements CityDataSource{
 
+    private CitySp citySp;
+
+    public CityLocal(CitySp citySp) {
+        this.citySp = citySp;
+    }
+
     @Override
     public void load(LoadCityCallback callback) {
         List<City> cities =  SQLite.select()
@@ -47,6 +53,19 @@ public class CityLocal implements CityDataSource{
     public void delete(){
         SQLite.delete(City.class)
                 .execute();
+    }
+
+    @Override
+    public void setCurrentCityLocation(String cityName){
+        citySp.setCityName(cityName);
+        List<City> cities =  SQLite.select()
+                .from(City.class)
+                .where(City_Table.name.like("%" + cityName + "%"))
+                .limit(1)
+                .queryList();
+        if(cities.size() > 0) {
+            citySp.setCityId(cities.get(0).getId());
+        }
     }
 
 }

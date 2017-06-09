@@ -16,18 +16,18 @@ public class City extends BaseModel{
     @PrimaryKey(autoincrement = false)
     @SerializedName("id")
     @Expose
-    private String id;
+    private int id;
 
     @Column
     @SerializedName("name")
     @Expose
     private String name;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
