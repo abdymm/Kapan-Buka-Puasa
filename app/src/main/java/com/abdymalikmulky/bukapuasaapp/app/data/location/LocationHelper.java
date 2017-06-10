@@ -115,7 +115,7 @@ public class LocationHelper {
                             addresses = geocoder.getFromLocation(
                                     location.getLatitude(),
                                     location.getLongitude(),
-                                    // In this sample, we get just a single address.
+                                    // In this sample, we getCurrentCity just a single address.
                                     1);
 
 

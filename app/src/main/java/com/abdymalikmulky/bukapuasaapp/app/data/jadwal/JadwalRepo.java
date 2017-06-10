@@ -17,46 +17,66 @@ public class JadwalRepo implements JadwalDataSource {
         this.jadwalRemote = jadwalRemote;
     }
 
-
-
     @Override
     public void loadByCity(final int cityId, final LoadJadwalByCityCallback callback) {
-        jadwalRemote.loadByCity(cityId, new LoadJadwalByCityCallback() {
-            @Override
-            public void onLoaded(List<Jadwal> jadwalList) {
-                if(storeJadwal(cityId, jadwalList)){
-                    jadwalLocal.loadByCity(cityId, new LoadJadwalByCityCallback() {
-                        @Override
-                        public void onLoaded(List<Jadwal> jadwalList) {
-                            callback.onLoaded(jadwalList);
-                        }
-                        @Override
-                        public void onNoData() {
-                            callback.onNoData();
-                        }
-
-                        @Override
-                        public void onFailed(String msg) {
-                            callback.onFailed(msg);
-                        }
-
-                    });
-                }else{
-                    callback.onFailed("Something Wrong yeah");
+        //Kalau jadwal udah ada
+        if(jadwalLocal.isJadwalExist(cityId)){
+            jadwalLocal.loadByCity(cityId, new LoadJadwalByCityCallback() {
+                @Override
+                public void onLoaded(List<Jadwal> jadwalList) {
+                    callback.onLoaded(jadwalList);
                 }
-            }
+                @Override
+                public void onNoData() {
+                    callback.onNoData();
+                }
 
-            @Override
-            public void onNoData() {
-                callback.onNoData();
-            }
+                @Override
+                public void onFailed(String msg) {
+                    callback.onFailed(msg);
+                }
 
-            @Override
-            public void onFailed(String msg) {
-                callback.onFailed(msg);
-            }
-        });
+            });
+        }else{
+            jadwalRemote.loadByCity(cityId, new LoadJadwalByCityCallback() {
+                @Override
+                public void onLoaded(List<Jadwal> jadwalList) {
+                    if(storeJadwal(cityId, jadwalList)){
+                        jadwalLocal.loadByCity(cityId, new LoadJadwalByCityCallback() {
+                            @Override
+                            public void onLoaded(List<Jadwal> jadwalList) {
+                                callback.onLoaded(jadwalList);
+                            }
+                            @Override
+                            public void onNoData() {
+                                callback.onNoData();
+                            }
+
+                            @Override
+                            public void onFailed(String msg) {
+                                callback.onFailed(msg);
+                            }
+
+                        });
+                    }else{
+                        callback.onFailed("Something Wrong yeah");
+                    }
+                }
+
+                @Override
+                public void onNoData() {
+                    callback.onNoData();
+                }
+
+                @Override
+                public void onFailed(String msg) {
+                    callback.onFailed(msg);
+                }
+            });
+        }
     }
+
+
 
     @Override
     public void getJadwalTodayByCity(int cityId, GetJadwalTodayByCityCallback callback) {

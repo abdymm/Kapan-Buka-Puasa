@@ -1,5 +1,6 @@
 package com.abdymalikmulky.bukapuasaapp.app.data.city;
 
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
@@ -30,8 +31,18 @@ public class CityLocal implements CityDataSource{
     }
 
     @Override
-    public void get(GetCityCallback callback) {
-
+    public void getCurrentCity(GetCityCallback callback) {
+        int cityId = citySp.getCityId();
+        City city =  SQLite.select()
+                .from(City.class)
+                .where(City_Table.id.is(cityId))
+                .limit(1)
+                .querySingle();
+        if(city != null){
+            callback.onGet(city);
+        }else {
+            callback.onFailed("no data");
+        }
     }
 
 
@@ -58,13 +69,12 @@ public class CityLocal implements CityDataSource{
     @Override
     public void setCurrentCityLocation(String cityName){
         citySp.setCityName(cityName);
-        List<City> cities =  SQLite.select()
+        City city =  SQLite.select()
                 .from(City.class)
                 .where(City_Table.name.like("%" + cityName + "%"))
-                .limit(1)
-                .queryList();
-        if(cities.size() > 0) {
-            citySp.setCityId(cities.get(0).getId());
+                .querySingle();
+        if(city != null) {
+            citySp.setCityId(city.getId());
         }
     }
 

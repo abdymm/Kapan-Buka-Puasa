@@ -23,12 +23,12 @@ import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
 import com.abdymalikmulky.bukapuasaapp.app.data.location.LocationHelper;
 import com.abdymalikmulky.bukapuasaapp.app.data.location.LocationListener;
 import com.abdymalikmulky.bukapuasaapp.app.ui.main.MainActivity;
+import com.abdymalikmulky.bukapuasaapp.util.ConstantsUtil;
 
 import timber.log.Timber;
 
 public class SplashActivity extends AppCompatActivity implements SplashContract.View, LocationListener {
 
-    private static final String TAG = SplashActivity.class.getSimpleName();
 
     private SplashContract.Presenter splashPresenter;
 
@@ -91,6 +91,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void showMain(int cityId) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(ConstantsUtil.INTENT_EXTRA_CITY_ID, cityId);
         startActivity(intent);
         finish();
     }
@@ -98,6 +99,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void showError(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Timber.d("Errorrrr %s", msg);
     }
 
 

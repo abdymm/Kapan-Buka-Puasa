@@ -32,4 +32,8 @@ public class ConstantsUtil {
     public static final String RESULT_DATA_KEY = PACKAGE_NAME + ".RESULT_DATA_KEY";
 
     public static final String LOCATION_DATA_EXTRA = PACKAGE_NAME + ".LOCATION_DATA_EXTRA";
+
+    //EXTRA INTENT ACTIVITY
+    public static final String INTENT_EXTRA_CITY_ID = "city_id";
+
 }

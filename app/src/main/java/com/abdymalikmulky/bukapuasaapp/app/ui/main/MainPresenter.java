@@ -4,8 +4,6 @@ import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalDataSource;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
 
-import java.util.List;
-
 /**
  * Bismillahirrahmanirrahim
  * Created by abdymalikmulky on 6/7/17.
@@ -32,26 +30,6 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void stop() {
 
-    }
-
-    @Override
-    public void loadJadwal(int cityId) {
-        jadwalRepo.loadByCity(cityId, new JadwalDataSource.LoadJadwalByCityCallback() {
-            @Override
-            public void onLoaded(List<Jadwal> jadwalList) {
-                mainView.showJadwal(jadwalList);
-            }
-
-            @Override
-            public void onNoData() {
-                mainView.showNoData();
-            }
-
-            @Override
-            public void onFailed(String msg) {
-                mainView.showError(msg);
-            }
-        });
     }
 
     @Override

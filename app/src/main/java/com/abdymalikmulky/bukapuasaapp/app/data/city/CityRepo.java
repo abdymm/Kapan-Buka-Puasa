@@ -44,14 +44,7 @@ public class CityRepo implements CityDataSource {
             cityLocal.load(new LoadCityCallback() {
                 @Override
                 public void onLoaded(List<City> cities) {
-                    if(storeCity(cities)){
-
-                        //set current location
-
-                        callback.onLoaded(cities);
-                    }else{
-                        callback.onFailed("Something Wrong");
-                    }
+                    callback.onLoaded(cities);
                 }
 
                 @Override
@@ -68,14 +61,15 @@ public class CityRepo implements CityDataSource {
     }
 
     @Override
-    public void get(GetCityCallback callback) {
-
+    public void getCurrentCity(GetCityCallback callback) {
+        cityLocal.getCurrentCity(callback);
     }
 
     @Override
     public void setCurrentCityLocation(String cityName) {
         cityLocal.setCurrentCityLocation(cityName);
     }
+
 
     private boolean storeCity(List<City> cities){
         int successCount = 0;

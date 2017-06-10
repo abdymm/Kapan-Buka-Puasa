@@ -3,9 +3,13 @@ package com.abdymalikmulky.bukapuasaapp.app.ui.splash;
 import com.abdymalikmulky.bukapuasaapp.app.data.city.City;
 import com.abdymalikmulky.bukapuasaapp.app.data.city.CityDataSource;
 import com.abdymalikmulky.bukapuasaapp.app.data.city.CityRepo;
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalDataSource;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 public class SplashPresenter implements SplashContract.Presenter {
 
@@ -22,6 +26,17 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void start() {
+       fetchCity();
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+
+    @Override
+    public void fetchCity() {
         cityRepo.load(new CityDataSource.LoadCityCallback() {
             @Override
             public void onLoaded(List<City> cities) {
@@ -41,19 +56,36 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
-    public void stop() {
-
-    }
-
-
-    @Override
-    public void fetchCity() {
-
-    }
-
-    @Override
     public void fetchJadwal() {
-        
+        cityRepo.getCurrentCity(new CityDataSource.GetCityCallback() {
+            @Override
+            public void onGet(final City city) {
+                Timber.d("DataCity : %s", city.toString());
+                jadwalRepo.loadByCity(city.getId(), new JadwalDataSource.LoadJadwalByCityCallback() {
+                    @Override
+                    public void onLoaded(List<Jadwal> jadwalList) {
+                        Timber.d("DataJadwal : %s", jadwalList.toString());
+                        splashView.showMain(city.getId());
+                    }
+
+                    @Override
+                    public void onNoData() {
+                        splashView.showError("No Data");
+                    }
+
+                    @Override
+                    public void onFailed(String msg) {
+                        splashView.showError(msg);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                 splashView.showError(msg);
+
+            }
+        });
     }
 
     @Override

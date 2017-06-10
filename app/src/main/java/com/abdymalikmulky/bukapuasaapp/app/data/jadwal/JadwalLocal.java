@@ -44,6 +44,14 @@ public class JadwalLocal implements JadwalDataSource{
         }
     }
 
+    public boolean isJadwalExist(int cityId) {
+        long countData =  SQLite.select()
+                .from(Jadwal.class)
+                .where(Jadwal_Table.cityId.eq(cityId))
+                .count();
+        return (countData > 0) ? true : false;
+    }
+
     public boolean save(Jadwal newJadwal){
         return (newJadwal.insert() > 0) ? true : false;
     }

@@ -39,4 +39,11 @@ public class City extends BaseModel{
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

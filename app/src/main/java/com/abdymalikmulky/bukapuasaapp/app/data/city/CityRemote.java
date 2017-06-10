@@ -48,7 +48,7 @@ public class CityRemote implements CityDataSource {
     }
 
     @Override
-    public void get(GetCityCallback callback) {
+    public void getCurrentCity(GetCityCallback callback) {
 
     }
 

@@ -1,5 +1,6 @@
 package com.abdymalikmulky.bukapuasaapp.app.ui.main;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -13,12 +14,11 @@ import android.widget.Toast;
 
 import com.abdymalikmulky.bukapuasaapp.R;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalLocal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRemote;
+import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRepo;
+import com.abdymalikmulky.bukapuasaapp.util.ConstantsUtil;
 import com.abdymalikmulky.bukapuasaapp.util.DateTimeUtil;
-
-import java.util.List;
 
 import cn.iwgang.countdownview.CountdownView;
 import cn.iwgang.countdownview.DynamicConfig;
@@ -30,7 +30,8 @@ import timber.log.Timber;
  */
 public class MainActivity extends AppCompatActivity implements CountdownView.OnCountdownEndListener, MainContract.View{
 
-    private static final int CITY_DUMMY = 14;
+    private Intent intent;
+    private int cityId;
 
     private MainContract.Presenter mainPresenter;
 
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        intent = getIntent();
+        cityId = intent.getIntExtra(ConstantsUtil.INTENT_EXTRA_CITY_ID, 0);
 
         dateTimeUtil = new DateTimeUtil();
 
@@ -160,22 +164,12 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        mainPresenter.loadJadwal(CITY_DUMMY);
+        mainPresenter.getNowJadwal(cityId);
     }
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
         mainPresenter = presenter;
-    }
-
-    //TODO: pindahin ini ke background_splash screen
-    @Override
-    public void showJadwal(List<Jadwal> jadwalList) {
-        Timber.d("Data-Jadwal %s", jadwalList.toString());
-        int lastIndex = jadwalList.size()-1;
-
-        //TODO: ini nanti di background_splash aja, trus tambahin check if exist jadwalnya
-        mainPresenter.getNowJadwal(CITY_DUMMY);
     }
 
     @Override
