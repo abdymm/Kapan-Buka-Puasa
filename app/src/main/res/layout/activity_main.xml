@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.abdymalikmulky.bukapuasaapp.app.ui.main.MainActivity">
+    tools:context="com.abdymalikmulky.bukapuasaapp.app.ui.main.MainActivity"
+    android:padding="@dimen/layout_padding">
+
 
 
     <android.support.design.widget.AppBarLayout
@@ -36,12 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dummy_date_hijr"
-        android:textStyle="bold"
         android:textColor="@color/colorText"
         android:textSize="@dimen/text_size_date_hijr"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/layout_margin_end"/>
+        android:layout_below="@+id/tv_city_name"
+        android:layout_alignEnd="@+id/tv_date_masehi" />
 
     <TextView
         android:id="@+id/tv_date_masehi"
@@ -53,9 +53,18 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/tv_date_hijr"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="@dimen/layout_margin_end"/>
+        />
 
-
+    <TextView
+        android:id="@+id/tv_city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bandung"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/text_size_date_hijr"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <RelativeLayout
         android:id="@+id/box_cdv"

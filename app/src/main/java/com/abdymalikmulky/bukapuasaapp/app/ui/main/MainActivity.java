@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
 
 
     private Toolbar toolbar;
-    private TextView tvDateMasehi, tvDateHijr, tvLabelMaghrib, tvTimeMaghrib;
+    private TextView tvDateMasehi, tvDateHijr, tvLabelMaghrib, tvTimeMaghrib, tvCityName;
 
     private DateTimeUtil dateTimeUtil;
 
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         tvDateMasehi = (TextView) findViewById(R.id.tv_date_masehi);
         tvLabelMaghrib = (TextView) findViewById(R.id.tv_maghrib_label);
         tvTimeMaghrib = (TextView) findViewById(R.id.tv_maghrib_time);
+        tvCityName = (TextView) findViewById(R.id.tv_city_name);
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -110,10 +111,11 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         Typeface tf =Typeface.createFromAsset(getAssets(),"font/helveticanueu.ttf");
         Typeface tfBold =Typeface.createFromAsset(getAssets(),"font/helveticanueu_b.ttf");
 
-        tvDateHijr.setTypeface(tfBold);
+        tvDateHijr.setTypeface(tf);
         tvDateMasehi.setTypeface(tf);
         tvLabelMaghrib.setTypeface(tf);
         tvTimeMaghrib.setTypeface(tf);
+        tvCityName.setTypeface(tfBold);
     }
     private void initRepoPresenter(){
         jadwalLocal = new JadwalLocal();

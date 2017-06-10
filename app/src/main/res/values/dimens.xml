@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="layout_padding">16dp</dimen>
     <dimen name="title_text_size">20sp</dimen>
 
     <dimen name="layout_margin_end">5dp</dimen>
@@ -11,7 +12,8 @@
     <dimen name="cdv_suffix_text_size">14sp</dimen>
 
     <dimen name="margin_between_component_text">5dp</dimen>
-    <dimen name="text_size_date_hijr">18sp</dimen>
+    <dimen name="text_size_date_hijr">20sp</dimen>
     <dimen name="text_size_date_masehi">16sp</dimen>
+    <dimen name="text_size_city">20sp</dimen>
 
 </resources>
