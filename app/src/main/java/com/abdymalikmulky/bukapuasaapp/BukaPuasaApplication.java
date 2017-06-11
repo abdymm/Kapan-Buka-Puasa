@@ -17,6 +17,7 @@ public class BukaPuasaApplication extends Application {
         super.onCreate();
 
         FlowManager.init(this);
+        //FlowLog.setMinimumLoggingLevel(FlowLog.Level.);
 
         Timber.plant(new Timber.DebugTree());
 

@@ -89,7 +89,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void setupLocation(String cityName) {
-        Timber.d("DataCitySP");
+        Timber.d("DataCitySP1 %s", cityName);
 
         cityRepo.setCurrentCityLocation(cityName);
         splashView.showLocationSetupDone();

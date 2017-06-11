@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abdymalikmulky.bukapuasaapp.R;
+import com.abdymalikmulky.bukapuasaapp.app.data.city.CitySp;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalLocal;
 import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.JadwalRemote;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
     private int cityId;
 
     private MainContract.Presenter mainPresenter;
+
+    //TODO: MVP nih harusnya
+    private CitySp citySp;
 
     private JadwalRemote jadwalRemote;
     private JadwalLocal jadwalLocal;
@@ -118,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         tvCityName.setTypeface(tfBold);
     }
     private void initRepoPresenter(){
+        citySp = new CitySp(getApplicationContext());
+
         jadwalLocal = new JadwalLocal();
         jadwalRemote = new JadwalRemote();
         jadwalRepo = new JadwalRepo(jadwalLocal, jadwalRemote);
@@ -186,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         tvTimeMaghrib.setText(DateTimeUtil.removeSecondInStringTime(maghrib));
         tvDateMasehi.setText(DateTimeUtil.getTodayIndonesia());
         tvDateHijr.setText(DateTimeUtil.getTodayHijr());
+        tvCityName.setText(citySp.getCityName().toUpperCase());
     }
 
     @Override

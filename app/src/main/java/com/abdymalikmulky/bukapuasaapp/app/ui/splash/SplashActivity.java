@@ -148,7 +148,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void onSuccessLoadLocation(Address address) {
-        Timber.d("DataCitySP1");
+        Timber.d("DataCitySP1 %s", address.toString());
         String cityName = address.getSubAdminArea();
         splashPresenter.setupLocation(cityName);
     }

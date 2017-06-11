@@ -1,6 +1,8 @@
 package com.abdymalikmulky.bukapuasaapp.app.data.city;
 
+import com.raizlabs.android.dbflow.sql.language.From;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.sql.language.Where;
 
 import java.util.List;
 
@@ -72,15 +74,19 @@ public class CityLocal implements CityDataSource{
         Timber.d("DataCitySP %s", cityName);
         if(cityName.equals("")){
             cityName = citySp.getCityName();
-        }else {
-            citySp.setCityName(cityName);
         }
+        String[] cityNameSplit = cityName.split(" ");
         Timber.d("DataCitySP %s", citySp.getCityName());
-        City city =  SQLite.select()
-                .from(City.class)
-                .where(City_Table.name.like("%" + cityName + "%"))
-                .querySingle();
+        From<City> fromQUery =  SQLite.select().from(City.class);
+        Where<City> whereQuery = fromQUery.where(City_Table.name.like("%" + cityName + "%"));
+
+        for (int i = 0; i < cityNameSplit.length; i++){
+            whereQuery.or(City_Table.name.like("%" + cityNameSplit[i] + "%"));
+        }
+        City city = whereQuery.querySingle();
         if(city != null) {
+            Timber.d("DataCitySP %s", city.toString());
+            citySp.setCityName(cityName);
             citySp.setCityId(city.getId());
         }
     }
