@@ -31,7 +31,6 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void stop() {
-
     }
 
 
@@ -90,6 +89,8 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void setupLocation(String cityName) {
+        Timber.d("DataCitySP");
+
         cityRepo.setCurrentCityLocation(cityName);
         splashView.showLocationSetupDone();
     }

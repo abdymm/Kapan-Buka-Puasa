@@ -41,7 +41,7 @@ public class CityRemote implements CityDataSource {
 
             @Override
             public void onFailure(Call<CityResponse> call, Throwable t) {
-                callback.onFailed(t.toString());
+                callback.onFailed("Tidak Ditemukan Koneksi Internet, Pastikan Ada Internet, Dibutuhkan Hanya Pertama Kali Saja");
             }
         });
 

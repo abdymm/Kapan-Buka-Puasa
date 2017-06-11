@@ -34,17 +34,17 @@ public class CitySp {
     }
 
     public String getCityName(){
-        String cityName = sharedPref.getString(KEY_CITY_NAME, "jakarta");
+        String cityName = sharedPref.getString(KEY_CITY_NAME, "bandung");
         return cityName;
     }
 
     public void setCityId(int cityId){
-        editor.putInt(KEY_CITY_NAME, cityId);
+        editor.putInt(KEY_CITY_ID, cityId);
         editor.commit();
     }
 
     public int getCityId(){
-        int cityId = sharedPref.getInt(KEY_CITY_NAME, 14);
+        int cityId = sharedPref.getInt(KEY_CITY_ID, 14);
         return cityId;
     }
 

@@ -2,10 +2,13 @@ package com.abdymalikmulky.bukapuasaapp.app.data.location;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +25,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import timber.log.Timber;
 
 import static android.content.ContentValues.TAG;
 
@@ -94,66 +99,79 @@ public class LocationHelper {
     public void getAddress(){
         final String errorMessage = "";
 
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location == null) {
-                            Log.w(TAG, "onSuccessLoadLocation:null");
-                            return;
-                        }
-
-                        mLastLocation = location;
-
-                        Geocoder geocoder = new Geocoder(activity.getApplicationContext(), Locale.getDefault());
-                        List<Address> addresses = null;
-
-                        try {
-                            // Using getFromLocation() returns an array of Addresses for the area immediately
-                            // surrounding the given latitude and longitude. The results are a best guess and are
-                            // not guaranteed to be accurate.
-                            addresses = geocoder.getFromLocation(
-                                    location.getLatitude(),
-                                    location.getLongitude(),
-                                    // In this sample, we getCurrentCity just a single address.
-                                    1);
-
-
-                        } catch (IOException ioException) {
-                            // Catch network or other I/O problems.
-                            Log.e(TAG, errorMessage, ioException);
-                        } catch (IllegalArgumentException illegalArgumentException) {
-                            // Catch invalid latitude or longitude values.
-                            Log.e(TAG, errorMessage + ". " +
-                                    "Latitude = " + location.getLatitude() +
-                                    ", Longitude = " + location.getLongitude(), illegalArgumentException);
-                        }
-
-                        // Handle case where no address was found.
-                        if (addresses == null || addresses.size()  == 0) {
-                            if (errorMessage.isEmpty()) {
-                                Log.e(TAG, errorMessage);
+        if(isConnectedOnInternet()){
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location == null) {
+                                Log.w(TAG, "onSuccessLoadLocation:null");
+                                return;
                             }
 
-                        } else {
-                            Address address = addresses.get(0);
-                            locationListener.onSuccessLoadLocation(address);
+                            mLastLocation = location;
+
+                            Geocoder geocoder = new Geocoder(activity.getApplicationContext(), Locale.getDefault());
+                            List<Address> addresses = null;
+
+                            try {
+                                addresses = geocoder.getFromLocation(
+                                        location.getLatitude(),
+                                        location.getLongitude(),
+                                        1);
+
+                                Timber.d("DataAddresses %s", addresses.toString());
+
+                                if (addresses == null || addresses.size()  == 0) {
+                                    if (errorMessage.isEmpty()) {
+                                        Log.e(TAG, errorMessage);
+                                        locationListener.onFailedLoadLocation("Tidak ditemukan koneksi internet untuk mendapatkan lokasi anda, Lokasi yang digunakan adalah lokasi terakhir ketika mendapatkan internet");
+                                    }
+                                } else {
+                                    Address address = addresses.get(0);
+                                    locationListener.onSuccessLoadLocation(address);
+                                }
+                                if (!Geocoder.isPresent()) {
+                                    Toast.makeText(activity, "asd", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            } catch (IOException ioException) {
+                                locationListener.onFailedLoadLocation(ioException.getMessage());
+                                Log.e(TAG, errorMessage, ioException);
+                            } catch (IllegalArgumentException illegalArgumentException) {
+                                locationListener.onFailedLoadLocation(illegalArgumentException.getMessage());
+                                Log.e(TAG, errorMessage + ". " +
+                                        "Latitude = " + location.getLatitude() +
+                                        ", Longitude = " + location.getLongitude(), illegalArgumentException);
+                            }
+
+                            // Handle case where no address was found.
+
 
                         }
-                        if (!Geocoder.isPresent()) {
-                            Toast.makeText(activity, "asd", Toast.LENGTH_SHORT).show();
-                            return;
+                    })
+                    .addOnFailureListener(activity, new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "getLastLocation:onFailure", e);
                         }
+                    });
+        }else{
+            locationListener.onFailedLoadLocation("Tidak ditemukan koneksi internet untuk mendapatkan lokasi anda, Lokasi yang digunakan adalah lokasi terakhir ketika mendapatkan internet");
 
-                    }
-                })
-                .addOnFailureListener(activity, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "getLastLocation:onFailure", e);
-                    }
-                });
+        }
 
+
+
+    }
+
+    public boolean isConnectedOnInternet() {
+        ConnectivityManager
+                cm = (ConnectivityManager) activity.getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
     }
 
 

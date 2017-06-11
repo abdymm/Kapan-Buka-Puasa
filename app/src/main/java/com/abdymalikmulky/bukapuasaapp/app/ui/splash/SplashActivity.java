@@ -9,6 +9,8 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abdymalikmulky.bukapuasaapp.BuildConfig;
@@ -34,20 +36,26 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     private JadwalRepo jadwalRepo;
     private CityRepo cityRepo;
-    private CitySp citySp;
 
     LocationHelper locationHelper;
+
+    private TextView tvErrorMsg;
+    private ProgressBar pbLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        getSupportActionBar().hide();
+
+        tvErrorMsg = (TextView) findViewById(R.id.tv_error_msg);
+        pbLoading = (ProgressBar) findViewById(R.id.pb_splash);
+
         jadwalRepo = new JadwalRepo(new JadwalLocal(), new JadwalRemote());
         cityRepo = new CityRepo(new CityLocal(new CitySp(getApplicationContext())), new CityRemote());
 
         splashPresenter = new SplashPresenter(cityRepo, jadwalRepo, this);
-
 
         locationHelper = new LocationHelper(this, this);
     }
@@ -98,8 +106,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void showError(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        Timber.d("Errorrrr %s", msg);
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        tvErrorMsg.setVisibility(View.VISIBLE);
+        pbLoading.setVisibility(View.GONE);
     }
 
 
@@ -115,8 +124,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
             if (grantResults.length <= 0) {
                 Timber.d("fail3User interaction was cancelled");
             } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted.
-                locationHelper.getAddress();
+                Timber.d("Success granted permission");
             } else {
                 // Build intent that displays the App settings screen.
                 locationHelper.showSnackbar(R.string.setting_permission, R.string.label_setting, new View.OnClickListener() {
@@ -140,12 +148,16 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void onSuccessLoadLocation(Address address) {
+        Timber.d("DataCitySP1");
         String cityName = address.getSubAdminArea();
         splashPresenter.setupLocation(cityName);
     }
 
     @Override
     public void onFailedLoadLocation(String msg) {
-        Timber.e(msg);
+        Timber.d("DataCitySP2");
+
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        splashPresenter.setupLocation("");
     }
 }

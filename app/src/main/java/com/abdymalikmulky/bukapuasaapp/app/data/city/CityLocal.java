@@ -1,9 +1,10 @@
 package com.abdymalikmulky.bukapuasaapp.app.data.city;
 
-import com.abdymalikmulky.bukapuasaapp.app.data.jadwal.Jadwal;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Bismillahirrahmanirrahim
@@ -68,7 +69,13 @@ public class CityLocal implements CityDataSource{
 
     @Override
     public void setCurrentCityLocation(String cityName){
-        citySp.setCityName(cityName);
+        Timber.d("DataCitySP %s", cityName);
+        if(cityName.equals("")){
+            cityName = citySp.getCityName();
+        }else {
+            citySp.setCityName(cityName);
+        }
+        Timber.d("DataCitySP %s", citySp.getCityName());
         City city =  SQLite.select()
                 .from(City.class)
                 .where(City_Table.name.like("%" + cityName + "%"))
