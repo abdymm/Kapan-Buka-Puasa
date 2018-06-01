@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         mCvCountdownViewSecond.start(timeBukaPuasa);
 
         DynamicConfig.Builder dynamicConfigBuilder;
-
         dynamicConfigBuilder = new DynamicConfig.Builder();
         dynamicConfigBuilder
                 .setShowDay(false)
