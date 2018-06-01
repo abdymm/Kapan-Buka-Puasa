@@ -8,7 +8,7 @@
     <dimen name="box_cdv_margin">120dp</dimen>
 
     <dimen name="cdv_margin_right_left">10dp</dimen>
-    <dimen name="cdv_time_text_size">65sp</dimen>
+    <dimen name="cdv_time_text_size">55sp</dimen>
     <dimen name="cdv_suffix_text_size">14sp</dimen>
 
     <dimen name="margin_between_component_text">5dp</dimen>

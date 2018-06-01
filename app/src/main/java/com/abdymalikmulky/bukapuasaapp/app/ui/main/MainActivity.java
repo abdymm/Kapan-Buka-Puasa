@@ -1,14 +1,20 @@
 package com.abdymalikmulky.bukapuasaapp.app.ui.main;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
 
         initRepoPresenter();
 
-
-
     }
 
     private void setCountdown(long timeBukaPuasa){
@@ -89,37 +93,43 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
                 .setShowDay(false)
                 .setShowHour(true)
                 .setShowMinute(true)
-                .setShowSecond(false)
+                .setShowSecond(true)
                 .setShowMillisecond(false);
 
         mCvCountdownViewHour.dynamicShow(dynamicConfigBuilder.build());
     }
     private void setFindViewById(){
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        tvDateHijr = (TextView) findViewById(R.id.tv_date_hijr);
-        tvDateMasehi = (TextView) findViewById(R.id.tv_date_masehi);
-        tvLabelMaghrib = (TextView) findViewById(R.id.tv_maghrib_label);
-        tvTimeMaghrib = (TextView) findViewById(R.id.tv_maghrib_time);
-        tvCityName = (TextView) findViewById(R.id.tv_city_name);
+        toolbar = findViewById(R.id.toolbar);
+        tvDateHijr = findViewById(R.id.tv_date_hijr);
+        tvDateMasehi = findViewById(R.id.tv_date_masehi);
+        tvLabelMaghrib = findViewById(R.id.tv_maghrib_label);
+        tvTimeMaghrib = findViewById(R.id.tv_maghrib_time);
+        tvCityName = findViewById(R.id.tv_city_name);
 
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        setFont();
-    }
-    private void setFont(){
-        Typeface tf =Typeface.createFromAsset(getAssets(),"font/helveticanueu.ttf");
-        Typeface tfBold =Typeface.createFromAsset(getAssets(),"font/helveticanueu_b.ttf");
+        //SET CUSTOM ACTION BAR
+        SpannableString s = new SpannableString(getString(R.string.app_title));
+        s.setSpan(new TypefaceSpan("quicksand.xml"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        TextView textview = new TextView(getApplicationContext());
+        RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams
+                (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        textview.setLayoutParams(layoutparams);
+        textview.setText(s);
+        textview.setTextColor(Color.WHITE);
+        textview.setGravity(Gravity.CENTER);
+        textview.setTextSize(20);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(textview);
 
-        tvDateHijr.setTypeface(tf);
-        tvDateMasehi.setTypeface(tf);
-        tvLabelMaghrib.setTypeface(tf);
-        tvTimeMaghrib.setTypeface(tf);
-        tvCityName.setTypeface(tfBold);
+
+        //getSupportActionBar().setIcon(R.drawable.logo_icon);
+        getSupportActionBar().hide();
+
     }
     private void initRepoPresenter(){
         citySp = new CitySp(getApplicationContext());
@@ -192,7 +202,9 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         tvTimeMaghrib.setText(DateTimeUtil.removeSecondInStringTime(maghrib));
         tvDateMasehi.setText(DateTimeUtil.getTodayIndonesia());
         tvDateHijr.setText(DateTimeUtil.getTodayHijr());
-        tvCityName.setText(citySp.getCityName().toUpperCase());
+
+        String cityName = citySp.getCityName().substring(0, 1).toUpperCase() + citySp.getCityName().substring(1);
+        tvCityName.setText(cityName);
     }
 
     @Override

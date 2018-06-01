@@ -82,11 +82,11 @@ public class DateTimeUtil {
         Chronology iso = ISOChronology.getInstanceUTC();
         Chronology hijri = IslamicChronology.getInstanceUTC();
 
-        LocalDate todayIso = new LocalDate(year, month, day+3, iso);
+        LocalDate todayIso = new LocalDate(year, month, day, iso);
         LocalDate todayHijri = new LocalDate(todayIso.toDateTimeAtStartOfDay(),
                 hijri);
 
-        String hijrDate = todayHijri.getDayOfMonth()+" "+hmonths[todayHijri.getMonthOfYear()]+" "+todayHijri.getYear();
+        String hijrDate = (todayHijri.getDayOfMonth()+3)+" "+hmonths[todayHijri.getMonthOfYear()]+" "+todayHijri.getYear();
 
 
         return hijrDate;

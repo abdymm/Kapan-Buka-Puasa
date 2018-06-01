@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.abdymalikmulky.bukapuasaapp.app.ui.splash.SplashActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/background_white">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -28,7 +28,8 @@
         android:layout_marginTop="52dp"/>
     <ProgressBar
         android:id="@+id/pb_splash"
-        style="?android:attr/progressBarStyleSmall"
+        style="?android:attr/progressBarStyle"
+        android:background = "@drawable/progressbar_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
