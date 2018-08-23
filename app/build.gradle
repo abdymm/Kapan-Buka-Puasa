@@ -6,7 +6,11 @@ android {
     defaultConfig {
         applicationId "com.abdymalikmulky.bukpusapp"
         minSdkVersion 19
-        targetSdkVersion 26
+
+
+
+        adsfsftargetSdkVersi
+        on 26
         versionCode 1
         versionName "1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
